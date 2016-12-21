@@ -1,0 +1,29 @@
+proto udp
+port 1194
+mode server
+tls-server
+topology subnet
+push "topology subnet"
+dev tun
+tun-ipv6
+float
+comp-lzo
+server 192.168.254.0 255.255.255.0
+user nobody
+group nobody
+persist-key
+persist-tun
+keepalive 10 120
+reneg-sec 0
+<ca>
+{{ CA }}
+</ca>
+<cert>
+{{ CERT }}
+</cert>
+<key>
+{{ KEY }}
+</key>
+<dh>
+{{ DH }}
+</dh>

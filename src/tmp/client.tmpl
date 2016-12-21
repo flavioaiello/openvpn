@@ -1,0 +1,17 @@
+client
+tls-client
+comp-lzo
+dev tun
+remote {{ SERVICE_URL }}
+port 1194
+proto udp
+<ca>
+{{ CA }}
+</ca>
+<cert>
+{{ CERT }}
+</cert>
+<key>
+{{ KEY }}
+</key>
+

@@ -4,7 +4,7 @@ def project = env.JOB_NAME.split('/').reverse()[1]
 def jobshortname = env.JOB_NAME.substring(env.JOB_NAME.lastIndexOf('/') + 1)
 def shortname = jobshortname.substring(jobshortname.indexOf('-') + 1)
 def dockerImageName = shortname.substring(shortname.indexOf('-') + 1)
-def dockerRegistry = 'http://nexus:5000'
+def dockerRegistry = 'http://localhost:5000'
 def dockerRepository = 'yourrepository'
 def dockerCredentialsId = 'docker'
 
@@ -16,22 +16,22 @@ node {
     def dockerImageTag = sh(returnStdout: true, script: 'git describe --all').trim().replaceAll(/(.*\/)?(.+)/,'$2')
 
     stage('Env') {
-        echo '*** Show env variables: ***' + \
-             '\n Project: ' + project + \
-             '\n Jobshortname: ' + jobshortname + \
-             '\n Shortname: ' + shortname + \
-             '\n dockerRegistry: ' + dockerRegistry + \
-             '\n dockerRepository: ' + dockerRepository + \
-             '\n dockerCredentialsId: ' + dockerCredentialsId + \
-             '\n dockerImageName: ' + dockerImageName + \
-             '\n dockerImageTag: ' + dockerImageTag
+        echo "*** Show env variables: ***" + \
+             "\n Project: " + project + \
+             "\n Jobshortname: " + jobshortname + \
+             "\n Shortname: " + shortname + \
+             "\n dockerRegistry: " + dockerRegistry + \
+             "\n dockerRepository: " + dockerRepository + \
+             "\n dockerCredentialsId: " + dockerCredentialsId + \
+             "\n dockerImageName: " + dockerImageName + \
+             "\n dockerImageTag: " + dockerImageTag
     }
 
     stage('Build & Push') {
         docker.withRegistry(dockerRegistry, dockerCredentialsId) {
 
             // Set repository and image name
-            def image = docker.build dockerRepository + '/' + dockerImageName
+            def image = docker.build dockerRepository + "/" + dockerImageName, "--build-arg TAG=${dockerImageTag} ."
 
             // Push actual tag
             image.push(dockerImageTag)
@@ -41,7 +41,7 @@ node {
                 image.push('latest')
             }
 
-            echo '*** Docker image successfully pushed to registry. ***'
+            echo "*** Docker image successfully pushed to registry. ***"
         }
     }
 }
