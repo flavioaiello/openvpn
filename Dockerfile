@@ -19,4 +19,4 @@ RUN echo "@community http://nl.alpinelinux.org/alpine/edge/community" >> /etc/ap
 EXPOSE 1194/udp
 
 ENTRYPOINT ["entrypoint.sh"]
-CMD ["openvpn", "--config", "/etc/openvpn/server.conf", "--crl-verify", "/etc/openvpn/crl.pem"]
+CMD ["openvpn", "--config", "/etc/openvpn/server.conf", "--crl-verify", "/etc/openvpn/pki/crl.pem"]

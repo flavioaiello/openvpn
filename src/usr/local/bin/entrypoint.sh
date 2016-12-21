@@ -17,8 +17,8 @@ if [ ! -f ${OPENVPN}/server.conf ]; then
    awk '/\{\{ CA \}\}/{system("cat ${EASYRSA_PKI}/ca.crt");next};/\{\{ CERT \}\}/{system("cat ${EASYRSA_PKI}/issued/server.crt");next};/\{\{ KEY \}\}/{system("cat ${EASYRSA_PKI}/private/server.key");next};/\{\{ DH \}\}/{system("cat ${EASYRSA_PKI}/dh.pem");next}1' /tmp/server.tmpl > ${OPENVPN}/server.conf
 fi
 
-# Create clients certs and also a dummy one that will be revoced, due to the crl that can't be empty
-for CLIENT in ${CLIENTS} "dummy"; do
+# Create clients certs
+for CLIENT in ${CLIENTS}; do
 
    # Generate key and write file if client is not existant
    if [ ! -f ${OPENVPN}/${CLIENT}.conf ]; then
