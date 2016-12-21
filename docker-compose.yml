@@ -9,8 +9,8 @@ services:
     volumes:
       - /tmp/openvpn:/etc/openvpn
     environment:
-      - CLIENTS=flavio
-      - SERVICE_URL=94.23.53.67
+      - CLIENTS=testuser
+      - SERVICE_URL=openvpn.yourone.you
     ports:
       - "1194:1194"
     restart: always
