@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+
+  openvpn:
+    build: .
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - /tmp/openvpn:/etc/openvpn
+    environment:
+      - CLIENTS=flavio
+      - SERVICE_URL=94.23.53.67
+    ports:
+      - "1194:1194"
+    restart: always

@@ -4,11 +4,6 @@ Very lean OpenVPN gateway based on alpine linux. Adds, removes and revokes clien
 
 ## Getting started
 
-```
-docker build -t vpn .
-docker run -ti --privileged --net=host -e CLIENTS='max michael'-e SERVICE_URL=openvpn.yourone.you -v /data/vpn:/etc/openvpn vpn
-```
-
 ## Docker compose sample excerpts
 
 ```
@@ -24,7 +19,7 @@ services:
     volumes:
       - /etc/openvpn:/etc/openvpn
     environment:
-      - CLIENTS='max hans stefan michi'
+      - CLIENTS=max hans stefan michi
       - SERVICE_URL=openvpn.yourone.you
     ports:
       - "1194:1194"
