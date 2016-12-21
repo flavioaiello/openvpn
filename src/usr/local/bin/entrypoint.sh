@@ -18,8 +18,6 @@ if [ ! -f ${OPENVPN}/server.conf ]; then
    
    # Write revocation list and make available to daemon
    openssl ca -gencrl -out crl.pem
-   ln "${EASYRSA_PKI}/crl.pem" "${OPENVPN}/crl.pem"
-   chmod 644 "$OPENVPN/crl.pem"
 fi
 
 # Create clients certs
@@ -48,6 +46,8 @@ done
 
 # Update revocation list
 easyrsa gen-crl
+ln "${EASYRSA_PKI}/crl.pem" "${OPENVPN}/crl.pem"
+chmod 644 "$OPENVPN/crl.pem"
 
 # Update the client list
 rm ${OPENVPN}/clients.lst
