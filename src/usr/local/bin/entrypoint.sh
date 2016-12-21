@@ -4,7 +4,6 @@ if [ ! -f ${OPENVPN}/server.conf ]; then
 
    # Remove old pki
    rm -rf ${EASYRSA_PKI}
-   openssl ca -gencrl > ${OPENVPN}/crl.pem
 
    # Init new pki
    easyrsa init-pki
@@ -16,6 +15,9 @@ if [ ! -f ${OPENVPN}/server.conf ]; then
 
    # Write server config file
    awk '/\{\{ CA \}\}/{system("cat ${EASYRSA_PKI}/ca.crt");next};/\{\{ CERT \}\}/{system("cat ${EASYRSA_PKI}/issued/server.crt");next};/\{\{ KEY \}\}/{system("cat ${EASYRSA_PKI}/private/server.key");next};/\{\{ DH \}\}/{system("cat ${EASYRSA_PKI}/dh.pem");next}1' /tmp/server.tmpl > ${OPENVPN}/server.conf
+
+   # Write empty revocation list
+   openssl ca -gencrl > ${OPENVPN}/crl.pem
 fi
 
 # Create clients certs
