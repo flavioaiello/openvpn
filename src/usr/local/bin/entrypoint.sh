@@ -4,7 +4,7 @@ if [ ! -f ${OPENVPN}/server.conf ]; then
 
    # Remove old pki
    rm -rf ${EASYRSA_PKI}
-   touch ${OPENVPN}/crl.pem
+   openssl ca -gencrl > ${OPENVPN}/crl.pem
 
    # Init new pki
    easyrsa init-pki
