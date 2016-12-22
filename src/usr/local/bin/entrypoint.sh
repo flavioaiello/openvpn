@@ -43,8 +43,8 @@ done
 
 # Update revocation list
 easyrsa gen-crl
-ln -sf "${EASYRSA_PKI}/crl.pem" "${OPENVPN}/crl.pem"
-chmod 644 "${EASYRSA_PKI}/crl.pem"
+ln -f ${EASYRSA_PKI}/crl.pem ${OPENVPN}/crl.pem
+chmod 644 ${OPENVPN}/crl.pem
 
 # Update the client list
 rm ${OPENVPN}/clients.lst

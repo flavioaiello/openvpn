@@ -21,4 +21,4 @@ VOLUME ["/etc/openvpn"]
 EXPOSE 1194/udp
 
 ENTRYPOINT ["entrypoint.sh"]
-CMD ["openvpn", "--config", "/etc/openvpn/server.conf", "--crl-verify", "/etc/openvpn/pki/crl.pem"]
+CMD ["openvpn", "--config", "/etc/openvpn/server.conf", "--crl-verify", "/etc/openvpn/crl.pem"]
