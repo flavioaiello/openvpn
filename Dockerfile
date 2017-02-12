@@ -10,8 +10,7 @@ RUN set -ex && \
     echo "@community http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk update && \
     apk upgrade && \
-    apk add ca-certificates openssl easy-rsa@community openvpn curl bash && \
-    rm -rf /var/cache/apk/* && \
+    apk add --no-cache ca-certificates openssl easy-rsa@community openvpn curl bash && \
     ln -s ${EASYRSA}/easyrsa /usr/local/bin && \
     chmod -R +x /usr/local/bin
 
