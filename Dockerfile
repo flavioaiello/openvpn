@@ -1,14 +1,13 @@
 FROM alpine:latest
-ARG TAG
-LABEL TAG=${TAG}
 
-ADD src /
+COPY files /
 
 ENV OPENVPN /etc/openvpn
 ENV EASYRSA /usr/share/easy-rsa
 ENV EASYRSA_PKI $OPENVPN/pki
 
-RUN echo "@community http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+RUN set -ex && \
+    echo "@community http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk update && \
     apk upgrade && \
     apk add ca-certificates openssl easy-rsa@community openvpn curl bash && \
