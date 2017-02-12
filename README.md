@@ -17,7 +17,7 @@ services:
     network_mode: "host"
     privileged: true
     volumes:
-      - /etc/openvpn:/etc/openvpn
+      - /tmp/openvpn:/etc/openvpn
     environment:
       - CLIENTS=max hans stefan michi
       - SERVICE_URL=openvpn.yourone.you
