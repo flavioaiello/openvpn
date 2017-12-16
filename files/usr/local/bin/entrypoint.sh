@@ -52,5 +52,9 @@ for CLIENT in ${CLIENTS}; do echo ${CLIENT} >> ${OPENVPN}/clients.lst; done
 
 echo "*** Your client profiles are stored in ${OPENVPN} eg. your mounted volume ***"
 
+# Forwarding
+iptables -t nat -A POSTROUTING -o eth0 -s 192.168.254.0/24 -j MASQUERADE
+iptables -I FORWARD -j ACCEPT
+
 # Start openvpn
 exec "$@"

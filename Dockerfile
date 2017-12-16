@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.6
 
 COPY files /
 
@@ -6,15 +6,13 @@ ENV OPENVPN /etc/openvpn
 ENV EASYRSA /usr/share/easy-rsa
 ENV EASYRSA_PKI $OPENVPN/pki
 
-RUN set -ex && \
-    echo "@community http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    apk update && \
-    apk upgrade && \
-    apk add --no-cache ca-certificates openssl easy-rsa@community openvpn curl bash && \
-    ln -s ${EASYRSA}/easyrsa /usr/local/bin && \
+RUN set -ex;\
+    apk update;\
+    apk upgrade;\
+    apk add ca-certificates openssl easy-rsa openvpn curl bash;\
+    rm -rf /var/cache/apk/*;\
+    ln -s ${EASYRSA}/easyrsa /usr/local/bin;\
     chmod -R +x /usr/local/bin
-
-VOLUME ["/etc/openvpn"]
 
 EXPOSE 1194/udp
 
