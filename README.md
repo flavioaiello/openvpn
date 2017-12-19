@@ -1,3 +1,7 @@
+[![Docker Build Status](https://img.shields.io/docker/build/flavioaiello/openvpn.svg?style=for-the-badge)](https://hub.docker.com/r/flavioaiello/openvpn/)
+[![Docker Stars](https://img.shields.io/docker/stars/flavioaiello/openvpn.svg?style=for-the-badge)](https://hub.docker.com/r/flavioaiello/openvpn/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/flavioaiello/openvpn.svg?style=for-the-badge)](https://hub.docker.com/r/flavioaiello/openvpn/)
+
 # OpenVPN
 
 Very lean OpenVPN gateway based on alpine linux. Adds, removes and revokes clients automatically. Just manage the `CLIENTS` environment variable and redeploy.
