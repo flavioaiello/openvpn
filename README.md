@@ -1,5 +1,3 @@
-[![Docker Build Status](https://img.shields.io/docker/build/flavioaiello/openvpn.svg)](https://hub.docker.com/r/flavioaiello/openvpn/)
-[![Docker Stars](https://img.shields.io/docker/stars/flavioaiello/openvpn.svg)](https://hub.docker.com/r/flavioaiello/openvpn/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/flavioaiello/openvpn.svg)](https://hub.docker.com/r/flavioaiello/openvpn/)
 [![Docker Automation](
 https://img.shields.io/docker/automated/flavioaiello/openvpn.svg)](https://hub.docker.com/r/flavioaiello/openvpn/)
